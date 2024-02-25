@@ -3,7 +3,7 @@ function Navbar() {
   return (
     <header>
       <nav className="navbar">
-        <a href="index.html"><img className="logoNavbar" src="public/logom4.png" alt="Logo"/> </a>
+        <a href="index.html"><img className="logoNavbar" src="./dist/logom4.png" alt="Logo"/> </a>
         <ul className="menu">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="#">Productos</a></li>

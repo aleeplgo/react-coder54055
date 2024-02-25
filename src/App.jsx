@@ -1,6 +1,7 @@
 //import { useState } from 'react'
 import Navbar from './components/Navbar/Navbar';
-import './components/Navbar/Navbar.css'
+import './components/Navbar/Navbar.css';
+
 
 function App() {
   return (

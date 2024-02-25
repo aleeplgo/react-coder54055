@@ -1,0 +1,110 @@
+Last login: Sat Feb 10 09:04:23 on console
+You have new mail.
+-bash: /Users/alelugo1961/.profile: No such file or directory
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+MacBook-Air-de-Alejandrina:~ alelugo1961$ clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MacBook-Air-de-Alejandrina:~ alelugo1961$ node --v
+node: bad option: --v
+MacBook-Air-de-Alejandrina:~ alelugo1961$ node --v
+node: bad option: --v
+MacBook-Air-de-Alejandrina:~ alelugo1961$ node --version
+v20.11.0
+MacBook-Air-de-Alejandrina:~ alelugo1961$ node -v
+v20.11.0
+MacBook-Air-de-Alejandrina:~ alelugo1961$ clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MacBook-Air-de-Alejandrina:~ alelugo1961$ npm create vite@latest
+Need to install the following packages:
+create-vite@5.2.0
+Ok to proceed? (y) y
+✔ Project name: … react-coder54055
+✔ Select a framework: › React
+✔ Select a variant: › JavaScript
+
+Scaffolding project in /Users/alelugo1961/react-coder54055...
+
+Done. Now run:
+
+  cd react-coder54055
+  npm install
+  npm run dev
+
+npm notice 
+npm notice New minor version of npm available! 10.2.4 -> 10.4.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.4.0
+npm notice Run npm install -g npm@10.4.0 to update!
+npm notice 
+MacBook-Air-de-Alejandrina:~ alelugo1961$ cd react-coder54055
+MacBook-Air-de-Alejandrina:react-coder54055 alelugo1961$ npm install
+
+added 272 packages, and audited 273 packages in 22s
+
+97 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+MacBook-Air-de-Alejandrina:react-coder54055 alelugo1961$ npm run dev
+
+> react-coder54055@0.0.0 dev
+> vite
+
+
+  VITE v5.1.1  ready in 925 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+code .
+code .
+cd react-coder54055 
+code .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

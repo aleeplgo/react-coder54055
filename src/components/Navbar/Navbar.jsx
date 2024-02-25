@@ -1,9 +1,11 @@
+import logom4 from "../../assets/images/logom4.png";
+
 
 function Navbar() {
   return (
     <header>
       <nav className="navbar">
-        <a href="index.html"><img className="logoNavbar" src="./src/assets/logom4.png" alt="Logo"/> </a>
+        <a href="index.html"><img className="logoNavbar" src={logom4} alt="Logo"/> </a>
         <ul className="menu">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="#">Productos</a></li>
@@ -20,3 +22,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

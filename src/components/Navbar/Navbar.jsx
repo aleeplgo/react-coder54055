@@ -9,7 +9,7 @@ function Navbar() {
         <ul className="menu">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="#">Productos</a></li>
-          <li><a href="#">Carrito <span className="material-symbols-outlined">shopping_cart</span></a></li>
+          <li><a href="#">Carrito</a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
 

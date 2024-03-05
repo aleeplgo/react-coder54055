@@ -1,7 +1,10 @@
 //import { useState } from 'react'
-import Navbar from './components/navbar/Navbar';
-import './components/navbar/Navbar.css';
-
+import Navbar from './components/Navbar/Navbar';
+import './components/Navbar/Navbar.css';
+import CartWidget from './components/CartWidget/CartWidget';
+import './components/CartWidget/CartWidget.css';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import './components/ItemListContainer/ItemListContainer.css';
 
 
 function App() {
@@ -9,6 +12,9 @@ function App() {
     <header>
    {/*  <Navbar message="Ale"/> */}
    <Navbar/>
+   <CartWidget/>
+   <ItemListContainer product="Logo" price="800"/>
+
     </header>
   );
 }

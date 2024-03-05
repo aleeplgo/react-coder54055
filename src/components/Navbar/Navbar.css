@@ -1,6 +1,7 @@
 :root {
     --main-bg-color: #f1f1f1;
     --azulM4: #003da6ff;
+    --red: #ff0000;
     --green: #0ecf45;
     --black: #191c1a;
     --white: #fff;
@@ -39,14 +40,6 @@
 
 .menuMobile {
   display: none;
-}
-
-.material-symbols-outlined {
-  width: 30px;
-  height: 30px;
-  align-items: center;
-  text-align: center;
-  font-size: 20px;
 }
 
   li a {

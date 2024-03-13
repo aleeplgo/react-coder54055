@@ -1,24 +1,43 @@
-import { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react';
 
-
-function CartWidget() {
-  // Estado para controlar la visibilidad del dropdown
+function CartWidget(props) {
   const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
-// Función para alternar la visibilidad del dropdown
-function toggleDropdown() {
-    setShowDropdown(!showDropdown);
-}
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    }
 
-return (
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
 
-<div className="cart-icon" onClick={toggleDropdown}>
-<span className="item-count">0</span>
-<a href="#"> <span className="material-symbols-outlined">shopping_cart</span></a>
-</div>
+  function handleMouseEnter() {
+    setShowDropdown(true);
+  }
 
-    
-)
+  return (
+    <div className="cart-icon" onMouseEnter={handleMouseEnter} ref={dropdownRef}>
+      <span className="item-count">0</span>
+      <a href="#">
+        <span className="material-symbols-outlined">shopping_cart</span>
+      </a>
+      {showDropdown && (
+        <div className="dropdown">
+          <ul>
+            <li>{props.product} - ${props.price}</li>
+            <li>{props.product} - ${props.price}</li>
+            <li>{props.product} - ${props.price}</li>
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default CartWidget;

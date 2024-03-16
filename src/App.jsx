@@ -1,17 +1,26 @@
-//import { useState } from 'react'
-import Navbar from './components/Navbar/Navbar';
-import './components/Navbar/Navbar.css';
-import CartWidget from './components/CartWidget/CartWidget';
-import './components/CartWidget/CartWidget.css';
+import {Routes, Route} from 'react-router-dom';
+import { Box }  from '@chakra-ui/react'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import Products from './pages/Products';
+import Contact from './pages/Contact';
+import CheckOut from './pages/CheckOut';
 
 function App() {
-  return (
-    <header>
-   {/*  <Navbar message="Ale"/> */}
-   <Navbar/>
-   <CartWidget product="Logo" price="800"/>
 
-    </header>
+  return (
+  <>
+<Box className="w-100 h-100">
+    <Navbar/>
+    <Routes>
+         <Route path="/" element={<Home/>}/>
+         <Route path="/productos" element={<Products/>}/>
+         <Route path="/checkout" element={<CheckOut/>}/>
+         <Route path="/contacto" element={<Contact/>}/>
+    </Routes>
+  </Box>
+
+  </>
   );
 }
 

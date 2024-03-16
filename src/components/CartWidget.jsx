@@ -1,5 +1,8 @@
 
-function CartWidget() {
+function CartWidget(props) {
+
+  const { product, price } = props;
+
   return (
     <div className="group">
       <button className="text-white hover:text-gray-300 relative">
@@ -9,9 +12,9 @@ function CartWidget() {
       </button>
       {/* Dropdown */}
       <ul className="group-hover:block hidden mt-0 w-48 bg-white border rounded-lg shadow-lg z-10 absolute right-0">
-        <li><a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Producto 1</a></li>
-        <li><a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Producto 2</a></li>
-        <li><a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Producto 3</a></li>
+        <li><a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">{product} ${price}</a></li>
+        <li><a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">{product} ${price}</a></li>
+        <li><a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">{product} ${price}</a></li>
       </ul>
     </div>
   );

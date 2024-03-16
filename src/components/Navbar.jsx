@@ -16,7 +16,7 @@ function Navbar() {
             <li><Link to="/contacto" className="hover:text-gray-300">Contacto</Link></li>
           </ul>
         </div>
-        <CartWidget/>
+        <CartWidget product={"Logo"} price={"300"} />
       </nav>
     </header>
   );

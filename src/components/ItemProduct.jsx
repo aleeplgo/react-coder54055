@@ -1,39 +1,60 @@
+import {useState, useEffect} from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 
 function ItemProduct() {
-  const products = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/300",
-      name: "Logotipo",
-      description: "Lorem ipsum",
-      price: 1000
-    },
 
-    {
-      id: 2,
-      image: "https://via.placeholder.com/300",
-      name: "Página web",
-      description: "Lorem ipsum",
-      price: 6000
-    },
+    const [products, setProducts] = useState([]);
 
-    {
-      id: 3,
-      image: "https://via.placeholder.com/300",
-      name: "Edición de video",
-      description: "Lorem ipsum",
-      price: 2500
-    },
+    useEffect(()=>{
 
-    {
-      id: 4,
-      image: "https://via.placeholder.com/300",
-      name: "Playera",
-      description: "Lorem ipsum",
-      price: 500
-    }
-  ];
+        const fetchProducts = () =>{
+            return new Promise((resolve)=>{
+                setTimeout(()=>{
+                    const productsData = [
+                        {
+                          id: 1,
+                          image: "https://via.placeholder.com/300",
+                          name: "Logotipo",
+                          description: "Lorem ipsum",
+                          price: 1000
+                        },
+                    
+                        {
+                          id: 2,
+                          image: "https://via.placeholder.com/300",
+                          name: "Página web",
+                          description: "Lorem ipsum",
+                          price: 6000
+                        },
+                    
+                        {
+                          id: 3,
+                          image: "https://via.placeholder.com/300",
+                          name: "Edición de video",
+                          description: "Lorem ipsum",
+                          price: 2500
+                        },
+                    
+                        {
+                          id: 4,
+                          image: "https://via.placeholder.com/300",
+                          name: "Playera",
+                          description: "Lorem ipsum",
+                          price: 500
+                        }
+                      ];
+                      resolve(productsData); 
+                }, 2000);
+            });
+        };
+
+        fetchProducts().then((data)=>{
+            setProducts(data);
+        });
+
+    }, []);
+
+  
 
   return (
     <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap="4">

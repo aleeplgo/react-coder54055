@@ -1,7 +1,7 @@
 const CheckOut = () => {
     return (
-      <div>CheckOut</div>
-    )
+      <h1 className="text-3xl m-5 font-black uppercase text-center w-2/3 mx-auto">CheckOut</h1>
+      )
   }
   
   export default CheckOut

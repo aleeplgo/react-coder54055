@@ -1,4 +1,4 @@
-
+import ItemListProduct from "../components/ItemListProduct"
 
 const Home = () => {
   //
@@ -6,6 +6,7 @@ const Home = () => {
   return (
     <>
     <h1>HOLA</h1>
+    <ItemListProduct/>
     </>
     
   )

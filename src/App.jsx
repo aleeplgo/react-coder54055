@@ -23,7 +23,7 @@ function App() {
          <Route path="/productos" element={<Products/>}/>
          <Route path="/checkout" element={<CheckOut/>}/>
          <Route path="/contacto" element={<Contact/>}/>
-         <Route path='/producto' element={<ProductPage/>}/>
+         <Route path="/producto/:id" element={<ProductPage />} />
     </Routes>
   </Box>
   </CartProvider>

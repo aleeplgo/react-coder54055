@@ -1,10 +1,23 @@
-function ProductPage() {
+import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { ProductContext } from '../contexts/ProductContext';
 
-  return(
-  <>
-  <h1 className="text-3xl m-5 font-black uppercase text-center w-2/3 mx-auto">Product Page</h1>
+const ProductPage = () => {
+  const { id } = useParams();
+  const { products } = useContext(ProductContext);
+  const product = products.find(product => product.id === parseInt(id));
 
-  </>
+  if (!product) {
+    return <div>Producto no encontrado</div>;
+  }
+
+  return (
+    <div>
+      <h2>{product.name}</h2>
+      <img src={product.image} alt={product.name} />
+      <p>{product.description}</p>
+      <p>Precio: ${product.price}</p>
+    </div>
   );
 }
 

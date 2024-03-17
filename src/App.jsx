@@ -6,13 +6,16 @@ import Products from './pages/Products';
 import Contact from './pages/Contact';
 import CheckOut from './pages/CheckOut';
 import ProductPage from './pages/ProductPage';
+import { CartProvider } from './contexts/CartContext';
 
 
 function App() {
-// <Route path="/productos/:productId" element={<ProductPage products={products} />} />
+
+
 
   return (
   <>
+<CartProvider>
 <Box className="w-100 h-100">
     <Navbar/>
     <Routes>
@@ -23,7 +26,7 @@ function App() {
          <Route path='/producto' element={<ProductPage/>}/>
     </Routes>
   </Box>
-
+  </CartProvider>
   </>
   );
 }

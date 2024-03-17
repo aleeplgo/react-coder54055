@@ -15,28 +15,32 @@ const ProductProvider = ({ children }) => {
               image: "https://via.placeholder.com/300",
               name: "Logotipo",
               description: "Lorem ipsum",
-              price: 1000
+              price: 1000,
+              quantity: 1
             },
             {
               id: 2,
               image: "https://via.placeholder.com/300",
               name: "Página web",
               description: "Lorem ipsum",
-              price: 6000
+              price: 6000,
+              quantity: 1
             },
             {
               id: 3,
               image: "https://via.placeholder.com/300",
               name: "Edición de video",
               description: "Lorem ipsum",
-              price: 2500
+              price: 2500,
+              quantity: 1
             },
             {
               id: 4,
               image: "https://via.placeholder.com/300",
               name: "Playera",
               description: "Lorem ipsum",
-              price: 500
+              price: 500,
+              quantity: 1
             }
           ];
           resolve(productsData);

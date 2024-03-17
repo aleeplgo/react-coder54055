@@ -1,60 +1,13 @@
-import {useState, useEffect} from "react";
+import { useContext } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
+import { ProductContext } from "../contexts/ProductContext"; 
 
 function ItemProduct() {
+  const { products } = useContext(ProductContext);
 
-    const [products, setProducts] = useState([]);
-
-    useEffect(()=>{
-
-        const fetchProducts = () =>{
-            return new Promise((resolve)=>{
-                setTimeout(()=>{
-                    const productsData = [
-                        {
-                          id: 1,
-                          image: "https://via.placeholder.com/300",
-                          name: "Logotipo",
-                          description: "Lorem ipsum",
-                          price: 1000
-                        },
-                    
-                        {
-                          id: 2,
-                          image: "https://via.placeholder.com/300",
-                          name: "Página web",
-                          description: "Lorem ipsum",
-                          price: 6000
-                        },
-                    
-                        {
-                          id: 3,
-                          image: "https://via.placeholder.com/300",
-                          name: "Edición de video",
-                          description: "Lorem ipsum",
-                          price: 2500
-                        },
-                    
-                        {
-                          id: 4,
-                          image: "https://via.placeholder.com/300",
-                          name: "Playera",
-                          description: "Lorem ipsum",
-                          price: 500
-                        }
-                      ];
-                      resolve(productsData); 
-                }, 2000);
-            });
-        };
-
-        fetchProducts().then((data)=>{
-            setProducts(data);
-        });
-
-    }, []);
-
-  
+  const handleAddToCart = (product, price) => {
+    console.log(product, price);
+  };
 
   return (
     <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap="4">
@@ -67,7 +20,8 @@ function ItemProduct() {
               <p className="text-gray-700 mb-2">{product.description}</p>
               <div className="flex items-center justify-between">
                 <span className="text-gray-900 font-bold">{product.price}</span>
-                <button className="px-3 py-1 bg-gray-800 text-white font-semibold rounded hover:bg-gray-700 cursor-pointer">Añadir al Carrito</button>
+                {/* Aquí pasamos product y price como argumentos */}
+                <button onClick={() => handleAddToCart(product.name, product.price)} className="px-3 py-1 bg-gray-800 text-white font-semibold rounded hover:bg-gray-700 cursor-pointer">Añadir al Carrito</button>
               </div>
             </div>
           </div>

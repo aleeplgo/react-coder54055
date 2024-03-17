@@ -1,13 +1,14 @@
+import { ProductProvider } from "../contexts/ProductContext"; 
 import ItemProduct from "./ItemProduct";
 
-
 function ItemListProduct() {
-
   return (
-   <>
-    <ItemProduct/>
-   </>
-  )
+    <>
+      <ProductProvider>
+        <ItemProduct />
+      </ProductProvider>
+    </>
+  );
 }
 
-export default ItemListProduct
+export default ItemListProduct;

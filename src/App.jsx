@@ -5,8 +5,11 @@ import Home from './pages/Home'
 import Products from './pages/Products';
 import Contact from './pages/Contact';
 import CheckOut from './pages/CheckOut';
+import ProductPage from './pages/ProductPage';
+
 
 function App() {
+// <Route path="/productos/:productId" element={<ProductPage products={products} />} />
 
   return (
   <>
@@ -17,6 +20,7 @@ function App() {
          <Route path="/productos" element={<Products/>}/>
          <Route path="/checkout" element={<CheckOut/>}/>
          <Route path="/contacto" element={<Contact/>}/>
+         <Route path='/producto' element={<ProductPage/>}/>
     </Routes>
   </Box>
 

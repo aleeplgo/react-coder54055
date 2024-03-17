@@ -1,4 +1,3 @@
-
 function CartWidget(props) {
 
   const { product, price } = props;

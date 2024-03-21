@@ -12,15 +12,14 @@ import { ProductProvider } from './ProductContext';
 
 
 function App() {
-
-
+  const categories = ["Branding", "Web", "Video"];
 
   return (
   <>
 <ProductProvider>
 <CartProvider>
 <Box className="w-100 h-100">
-    <Navbar/>
+<Navbar categories={categories}/>
     <Routes>
          <Route path="/" element={<Home/>}/>
          <Route path="/productos" element={<Products/>}/>

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "../contexts/CartContext";
+import { CartContext } from "../CartContext.jsx";
 import { RemoveFromCartIcon } from './Icons.jsx'
 
 

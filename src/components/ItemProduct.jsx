@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
-import { ProductContext } from "../contexts/ProductContext"; 
+import { ProductContext } from "../ProductContext.jsx"; 
 import { AddToCartIcon } from './Icons.jsx';
 import { useCart } from "../hooks/useCart.jsx";
 import { Link } from 'react-router-dom';

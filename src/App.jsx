@@ -6,7 +6,9 @@ import Products from './pages/Products';
 import Contact from './pages/Contact';
 import CheckOut from './pages/CheckOut';
 import ProductPage from './pages/ProductPage';
-import { CartProvider } from './contexts/CartContext';
+import { CartProvider } from './CartContext';
+import { ProductProvider } from './ProductContext';
+
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
 
   return (
   <>
+<ProductProvider>
 <CartProvider>
 <Box className="w-100 h-100">
     <Navbar/>
@@ -27,6 +30,7 @@ function App() {
     </Routes>
   </Box>
   </CartProvider>
+  </ProductProvider>
   </>
   );
 }

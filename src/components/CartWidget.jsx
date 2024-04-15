@@ -39,7 +39,8 @@ const handleCheckout = () => {
  const queryString = `${productQueryString}&totalPrice=${totalPrice}`;
 
  // Redirigir al checkout con los detalles de los productos y el totalPrice en la URL
- window.location.href = `/checkout?${queryString}`;
+ const baseUrl = '/react-coder54055'; // El basename configurado en BrowserRouter
+ window.location.href = `${baseUrl}/checkout?${queryString}`;
 };
 
   

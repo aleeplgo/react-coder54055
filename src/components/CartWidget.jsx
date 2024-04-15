@@ -12,10 +12,10 @@ function CartWidget() {
   const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 
   const handleCheckout = () => {
-    // Aquí podrías agregar la lógica para redireccionar al checkout de productos
-    // Por ejemplo:
-    // history.push('/checkout');
+    const productsQuery = cart.map(item => `product=${item.id}&quantity=${item.quantity}`).join('&');
+    window.location.href = `/checkout?${productsQuery}`;
   };
+  
 
   return (
     <div className="group relative">

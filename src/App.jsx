@@ -26,6 +26,7 @@ function App() {
          <Route path="/checkout" element={<CheckOut/>}/>
          <Route path="/contacto" element={<Contact/>}/>
          <Route path="/producto/:id" element={<ProductPage />} />
+         <Route path="/checkout" element={<CheckOut />} />
     </Routes>
   </Box>
   </CartProvider>

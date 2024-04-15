@@ -25,7 +25,7 @@ const handleCheckout = () => {
     name: product.name,
     quantity: product.quantity,
     price: product.price,
-    image: product.image // Suponiendo que tienes una propiedad 'image' en tu objeto de producto
+    image: product.image 
   }));
 
   // Crear una cadena de consulta con los detalles de los productos

@@ -11,12 +11,38 @@ function CartWidget() {
   // Calcular el precio total sumando el precio de cada producto multiplicado por su cantidad
   const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 
-  const handleCheckout = () => {
-    const productsQuery = cart.map(item => `product=${item.id}&quantity=${item.quantity}`).join('&');
-    window.location.href = `/checkout?${productsQuery}`;
-  };
-  
+/*  const handleCheckout = () => {
+  const totalProducts = cart.length;
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const queryString = `totalProducts=${totalProducts}&totalItems=${totalItems}&totalPrice=${totalPrice}`;
+  window.location.href = `/checkout?${queryString}`;
+}; */
+const handleCheckout = () => {
+  // Crear un array de objetos con los detalles de cada producto en el carrito
+  const productsDetails = cart.map(product => ({
+    id: product.id,
+    name: product.name,
+    quantity: product.quantity,
+    price: product.price,
+    image: product.image // Suponiendo que tienes una propiedad 'image' en tu objeto de producto
+  }));
 
+  // Crear una cadena de consulta con los detalles de los productos
+  const productQueryString = productsDetails.map(product => {
+    const { id, name, quantity, price, image } = product;
+    return `product=${id}&name=${encodeURIComponent(name)}&quantity=${quantity}&price=${price}&image=${encodeURIComponent(image)}`;
+  }).join('&');
+
+ // Incluir el totalPrice en la URL
+ const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+ const queryString = `${productQueryString}&totalPrice=${totalPrice}`;
+
+ // Redirigir al checkout con los detalles de los productos y el totalPrice en la URL
+ window.location.href = `/checkout?${queryString}`;
+};
+
+  
   return (
     <div className="group relative">
       <button className="text-white hover:text-gray-300 relative">
@@ -78,7 +104,7 @@ function CartWidget() {
               <tr>
                 <td colSpan="5" className="px-4 py-2 text-center">
                   <button onClick={handleCheckout} className="w-full px-3 py-1 bg-green-500 text-white font-semibold rounded hover:bg-green-700 cursor-pointer">
-                    Ir a pagar ${totalPrice}
+                  Ir a pagar ${totalPrice.toFixed(2)}
                   </button>
                 </td>
               </tr>

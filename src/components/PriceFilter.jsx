@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useProductContext } from '../ProductContext';
 
-const PriceFilter = ({ onPriceChange }) => {
+const PriceFilter = () => {
+  const { setFilteredProducts } = useProductContext();
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
 
   const handleInputChange = (e) => {
@@ -10,7 +12,15 @@ const PriceFilter = ({ onPriceChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onPriceChange(priceRange);
+
+    setFilteredProducts(prevProducts => {
+      return prevProducts.filter(product => {
+        return (
+          (priceRange.min === '' || product.price >= parseFloat(priceRange.min)) &&
+          (priceRange.max === '' || product.price <= parseFloat(priceRange.max))
+        );
+      });
+    });
   };
 
   return (

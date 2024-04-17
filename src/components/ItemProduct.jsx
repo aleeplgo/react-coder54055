@@ -11,7 +11,7 @@ function ItemProduct() {
 
   return (
     <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap="4">
-      {products.map((product) => (
+      {products && products.map((product) => ( // Verificación condicional aquí
         <GridItem key={product.id}>
           <div className="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden cursor-pointer">
             <Link to={`/producto/${product.id}`}>

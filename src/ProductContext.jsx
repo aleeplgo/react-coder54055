@@ -16,6 +16,7 @@ const ProductProvider = ({ children }) => {
           image: "https://via.placeholder.com/300",
           name: "Logotipo",
           description: "Lorem ipsum",
+          cathegory: "Branding",
           price: 1000,
           quantity: 1
         },
@@ -24,6 +25,7 @@ const ProductProvider = ({ children }) => {
           image: "https://via.placeholder.com/300",
           name: "Página web",
           description: "Lorem ipsum",
+          cathegory: "Web",
           price: 6000,
           quantity: 1
         },
@@ -32,6 +34,7 @@ const ProductProvider = ({ children }) => {
           image: "https://via.placeholder.com/300",
           name: "Edición de video",
           description: "Lorem ipsum",
+          cathegory: "Video",
           price: 2500,
           quantity: 1
         },
@@ -40,6 +43,7 @@ const ProductProvider = ({ children }) => {
           image: "https://via.placeholder.com/300",
           name: "Playera",
           description: "Lorem ipsum",
+          cathegory: "Branding",
           price: 500,
           quantity: 1
         }

@@ -1,9 +1,11 @@
 import { useContext } from "react";
-import { CartContext } from "../CartContext.jsx";
-import { RemoveFromCartIcon } from './Icons.jsx';
+import { CartContext } from "../CartContext";
+import { RemoveFromCartIcon } from './Icons';
+import { useNavigate } from 'react-router-dom';
 
 function CartWidget() {
   const { cart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
+  const navigate = useNavigate();
 
   // Calcular la cantidad total de productos en el carrito sumando las cantidades de todos los productos
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
@@ -11,39 +13,10 @@ function CartWidget() {
   // Calcular el precio total sumando el precio de cada producto multiplicado por su cantidad
   const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 
-/*  const handleCheckout = () => {
-  const totalProducts = cart.length;
-  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-  const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-  const queryString = `totalProducts=${totalProducts}&totalItems=${totalItems}&totalPrice=${totalPrice}`;
-  window.location.href = `/checkout?${queryString}`;
-}; */
-const handleCheckout = () => {
-  // Crear un array de objetos con los detalles de cada producto en el carrito
-  const productsDetails = cart.map(product => ({
-    id: product.id,
-    name: product.name,
-    quantity: product.quantity,
-    price: product.price,
-    image: product.image 
-  }));
+  const handleCheckout = () => {
+    navigate(`/checkout?totalPrice=${totalPrice}&${cart.map(item => `product${item.id}=${item.quantity}`).join('&')}`);
+  };
 
-  // Crear una cadena de consulta con los detalles de los productos
-  const productQueryString = productsDetails.map(product => {
-    const { id, name, quantity, price, image } = product;
-    return `product=${id}&name=${encodeURIComponent(name)}&quantity=${quantity}&price=${price}&image=${encodeURIComponent(image)}`;
-  }).join('&');
-
- // Incluir el totalPrice en la URL
- const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
- const queryString = `${productQueryString}&totalPrice=${totalPrice}`;
-
- // Redirigir al checkout con los detalles de los productos y el totalPrice en la URL
- const baseUrl = '/react-coder54055'; // El basename configurado en BrowserRouter
- window.location.href = `${baseUrl}/checkout?${queryString}`;
-};
-
-  
   return (
     <div className="group relative">
       <button className="text-white hover:text-gray-300 relative">
@@ -91,26 +64,16 @@ const handleCheckout = () => {
                   </td>
                 </tr>
               ))}
-              <tr>
-                <td colSpan="3" className="px-4 py-2 text-left">Total:</td>
-                <td colSpan="2" className="px-4 py-2 text-right">${totalPrice}</td>
-              </tr>
-              <tr>
-                <td colSpan="5" className="px-4 py-2 text-center">
-                  <button onClick={clearCart} className="w-full px-3 py-1 bg-red-500 text-white font-semibold rounded hover:bg-gray-700 cursor-pointer">
-                    Vaciar Carrito
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan="5" className="px-4 py-2 text-center">
-                  <button onClick={handleCheckout} className="w-full px-3 py-1 bg-green-500 text-white font-semibold rounded hover:bg-green-700 cursor-pointer">
-                  Ir a pagar ${totalPrice.toFixed(2)}
-                  </button>
-                </td>
-              </tr>
             </tbody>
           </table>
+        </div>
+        <div className="px-4 py-2">
+          <button onClick={clearCart} className="w-full px-3 py-1 bg-red-500 text-white font-semibold rounded hover:bg-gray-700 cursor-pointer">
+            Vaciar Carrito
+          </button>
+          <button onClick={handleCheckout} className="w-full mt-2 px-3 py-1 bg-green-500 text-white font-semibold rounded hover:bg-green-700 cursor-pointer">
+            Ir a pagar ${totalPrice.toFixed(2)}
+          </button>
         </div>
       </div>
     </div>

@@ -1,13 +1,14 @@
 import { useState, useEffect, useContext } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { CartContext } from "../CartContext";
 import Swal from 'sweetalert2';
 
 const CheckOut = () => {
   const location = useLocation();
   const { cart } = useContext(CartContext);
+  const navigate = useNavigate();
 
-  const [products, setProducts] = useState([]); 
+  const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [clientName, setClientName] = useState('');
   const [clientAddress, setClientAddress] = useState('');
@@ -19,26 +20,22 @@ const CheckOut = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const totalPrice = parseInt(searchParams.get('totalPrice'));
-
     setTotalPrice(totalPrice);
   }, [location.search]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const products = [];
-    for (const [key, value] of searchParams.entries()) {
-      if (key.startsWith('product')) {
-        const productId = key.split('=')[1];
-        const quantity = parseInt(value);
-        const product = cart.find((p) => p.id === productId);
-        if (product) {
-          products.push({ ...product, quantity });
-        }
+    const productsFromUrl = [];
+    cart.forEach(item => {
+      const productId = item.id;
+      const quantity = parseInt(searchParams.get(`product${productId}`));
+      if (!isNaN(quantity) && quantity > 0) {
+        productsFromUrl.push({ ...item, quantity });
       }
-    }
-    setProducts(products);
+    });
+    setProducts(productsFromUrl);
   }, [location.search, cart]);
-  
+
   const resetForm = () => {
     setClientName('');
     setClientAddress('');
@@ -50,21 +47,13 @@ const CheckOut = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    const formData = {
-      clientName,
-      clientAddress,
-      clientEmail,
-      cardNumber,
-      cardExpiration,
-      cardSecurityCode
-    };
-    console.log(formData);
     Swal.fire({
       title: '¡Compra realizada con éxito!',
       text: 'Gracias por tu compra',
       icon: 'success',
     }).then(() => {
       resetForm();
+      navigate('/'); // Redirigimos al usuario a la página de inicio después de la compra
     });
   };
 

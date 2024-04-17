@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 const CheckOut = () => {
   const location = useLocation();
-  const { cart } = useContext(CartContext);
+  const { cart, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
@@ -49,9 +49,10 @@ const CheckOut = () => {
     event.preventDefault();
     Swal.fire({
       title: '¡Compra realizada con éxito!',
-      text: 'Gracias por tu compra',
+      text: `Gracias por tu compra. Has pagado un total de $${totalPrice.toFixed(2)}.`,
       icon: 'success',
     }).then(() => {
+      clearCart(); // Vaciamos el carrito
       resetForm();
       navigate('/'); // Redirigimos al usuario a la página de inicio después de la compra
     });

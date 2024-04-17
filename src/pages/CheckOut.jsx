@@ -85,10 +85,7 @@ const CheckOut = () => {
       <div className="flex flex-wrap -mx-4">
         <div className="w-full lg:w-1/4 px-4 mb-8">
           <h2 className="text-xl font-semibold mb-3">Resumen del Pedido</h2>
-          <div>
-            <h2 className="text-xl font-semibold mb-3">Precio Total</h2>
-            <p>${totalPrice}</p>
-          </div>
+
           <ul>
             {products.map((product, index) => (
               <li key={index} className="mb-4">
@@ -134,7 +131,7 @@ const CheckOut = () => {
               </div>
             </div>
 
-            <button type="submit" className="mt-8 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md">
+            <button type="submit" className={`mt-8 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md ${products.length === 0 && 'opacity-50 cursor-not-allowed'}`} disabled={products.length === 0}>
               Pagar
             </button>
           </form>

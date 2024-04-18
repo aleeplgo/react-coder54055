@@ -1,4 +1,6 @@
-import  { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect, useContext, useCallback } from "react";
+import { db } from "./firebase/config";
+import { collection, getDocs } from "firebase/firestore";
 
 const ProductContext = createContext();
 
@@ -7,61 +9,37 @@ const ProductProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  const fetchData = () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
-
-    setTimeout(() => {
-      const productsData = [
-        {
-          id: 1,
-          image: "https://via.placeholder.com/300",
-          name: "Logotipo",
-          description: "Lorem ipsum",
-          category: "Branding",
-          price: 1000,
-          quantity: 1
-        },
-        {
-          id: 2,
-          image: "https://via.placeholder.com/300",
-          name: "Página web",
-          description: "Lorem ipsum",
-          category: "Web",
-          price: 6000,
-          quantity: 1
-        },
-        {
-          id: 3,
-          image: "https://via.placeholder.com/300",
-          name: "Edición de video",
-          description: "Lorem ipsum",
-          category: "Video",
-          price: 2500,
-          quantity: 1
-        },
-        {
-          id: 4,
-          image: "https://via.placeholder.com/300",
-          name: "Playera",
-          description: "Lorem ipsum",
-          category: "Branding",
-          price: 500,
-          quantity: 1
-        }
-      ];
-
+    try {
+      const productsCollection = collection(db, "products");
+      const snapshot = await getDocs(productsCollection);
+      console.log("products Collection :)", productsCollection);
+      const productsData = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log("Products data fetched:", productsData); // Registrar los datos obtenidos
       setProducts(productsData);
       setFilteredProducts(productsData);
+      console.log("Products state updated:", productsData); // Registrar el estado actualizado
+    } catch (error) {
+      console.error("Error al obtener documentos de Firestore:", error);
+    } finally {
       setLoading(false);
-    }, 2000);
-  };
+    }
+  }, []);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]); // Agregar fetchData como dependencia para evitar bucle infinito
+
+  console.log("Products state:", products);
 
   return (
-    <ProductContext.Provider value={{ products, loading, fetchData, filteredProducts, setFilteredProducts }}>
+    <ProductContext.Provider
+      value={{ products, loading, fetchData, filteredProducts, setFilteredProducts }}
+    >
       {children}
     </ProductContext.Provider>
   );

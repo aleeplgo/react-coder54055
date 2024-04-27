@@ -14,15 +14,12 @@ const ProductProvider = ({ children }) => {
     try {
       const productsCollection = collection(db, "products");
       const snapshot = await getDocs(productsCollection);
-      console.log("products Collection :)", productsCollection);
       const productsData = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      console.log("Products data fetched:", productsData); // Registrar los datos obtenidos
       setProducts(productsData);
       setFilteredProducts(productsData);
-      console.log("Products state updated:", productsData); // Registrar el estado actualizado
     } catch (error) {
       console.error("Error al obtener documentos de Firestore:", error);
     } finally {
@@ -32,9 +29,7 @@ const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]); // Agregar fetchData como dependencia para evitar bucle infinito
-
-  console.log("Products state:", products);
+  }, [fetchData]);
 
   return (
     <ProductContext.Provider
